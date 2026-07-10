@@ -31,6 +31,18 @@ AccountShield is a Spring Boot API for user account management, authentication, 
 
 The API runs on `http://localhost:8080`.
 
+By default the application starts with the `dev` profile:
+
+```yaml
+spring.profiles.active=${SPRING_PROFILES_ACTIVE:dev}
+```
+
+You can override it with:
+
+```bash
+SPRING_PROFILES_ACTIVE=prod ./mvnw spring-boot:run
+```
+
 ## Docker Run
 
 Build and start everything:
@@ -87,6 +99,37 @@ Services:
 - OpenAPI docs: `/v3/api-docs`
 - Auth header: `Authorization: Bearer <token>`
 
+### API Versioning
+
+The API uses media type parameter based content negotiation for versioning. The default version is `1.0`, so clients can call endpoints without specifying a version, or explicitly request one with the `Accept` header:
+
+```http
+Accept: application/vnd.devlab.dev+json;v=1.0
+```
+
+Supported versions are configured in `WebConfig`:
+
+- `1.0`
+- `2.0`
+- `3.0`
+
+This keeps endpoint paths stable, for example:
+
+```http
+POST /api/auth/login
+```
+
+instead of embedding the version in the URL.
+
+### Profiles
+
+The project uses Spring profiles to separate development behavior from production behavior:
+
+- `dev`: email verification codes are returned in the registration response to make local testing simple.
+- non-`dev`: verification codes are generated and stored, but not returned in the response. This simulates the production behavior where a mail provider would deliver the code.
+
+Email verification is backed by an in-memory `ConcurrentMapCache` store. This is enough for the current simulation and local development flow; a real production setup can replace it with an external cache or mail provider.
+
 ## Useful Endpoints
 
 - `POST /api/auth/register`
@@ -94,3 +137,20 @@ Services:
 - `POST /api/auth/refresh`
 - `POST /api/auth/verify-email`
 
+## Testing
+
+Run the full test suite:
+
+```bash
+./mvnw test
+```
+
+The test suite uses:
+
+- JUnit 5
+- Mockito
+- AssertJ
+
+Current tests cover the main service-level flows around registration, login, refresh token rotation, profile updates, admin user operations, login attempt locking, validation, and the custom authentication provider. Test data is organized with Test Mother fixtures to keep test cases focused on behavior.
+
+There is no JaCoCo coverage report configured yet, so coverage is verified by the test suite rather than a generated percentage report.
