@@ -8,10 +8,10 @@ import com.codems.accountshield.domain.user.entity.User;
 public final class ProfileTestMother {
 
     static final String OLD_NAME = "Old";
-    static final String NEW_NAME = "New";
-    static final String EMAIL = "old@example.com";
+    public static final String NEW_NAME = "New";
+    public static final String EMAIL = "old@example.com";
     static final String OLD_BIO = "Old bio";
-    static final String NEW_BIO = "New bio";
+    public static final String NEW_BIO = "New bio";
     static final String PASSWORD_HASH = "hash";
 
     private ProfileTestMother() {
@@ -32,6 +32,6 @@ public final class ProfileTestMother {
     }
 
     public static UserResponse updatedResponse() {
-        return new UserResponse(null, NEW_NAME, EMAIL, Role.USER, false, false, null, null);
+        return new UserResponse(null, NEW_NAME, NEW_BIO, EMAIL, Role.USER, false, false, null, null);
     }
 }

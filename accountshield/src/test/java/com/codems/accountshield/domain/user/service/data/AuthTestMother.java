@@ -87,15 +87,15 @@ public final class AuthTestMother {
     }
 
     public static UserResponse registeredUserResponse() {
-        return new UserResponse(null, NAME, REGISTER_EMAIL, Role.USER, false, false, null, null);
+        return new UserResponse(null, NAME, null, REGISTER_EMAIL, Role.USER, false, false, null, null);
     }
 
     public static UserResponse loginUserResponse() {
-        return new UserResponse(null, NAME, EMAIL, Role.USER, false, false, null, null);
+        return new UserResponse(null, NAME, null, EMAIL, Role.USER, false, false, null, null);
     }
 
     public static UserResponse verifiedUserResponse() {
-        return new UserResponse(null, NAME, EMAIL, Role.USER, true, false, null, null);
+        return new UserResponse(null, NAME, null, EMAIL, Role.USER, true, false, null, null);
     }
 
     public static EmailVerificationStartResult verificationSent() {

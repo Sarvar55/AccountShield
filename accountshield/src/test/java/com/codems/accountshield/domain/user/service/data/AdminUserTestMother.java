@@ -46,10 +46,10 @@ public final class AdminUserTestMother {
     }
 
     public static UserResponse adminResponse(UUID id) {
-        return new UserResponse(id, NAME, EMAIL, Role.ADMIN, true, false, null, null);
+        return new UserResponse(id, NAME, null, EMAIL, Role.ADMIN, true, false, null, null);
     }
 
     public static UserResponse unlockedUserResponse(UUID id) {
-        return new UserResponse(id, NAME, EMAIL, Role.USER, false, false, null, null);
+        return new UserResponse(id, NAME, null, EMAIL, Role.USER, false, false, null, null);
     }
 }

@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public final class LoginAttemptTestMother {
 
     static final String NAME = "Sara";
-    static final String EMAIL = "sara@example.com";
+    public static final String EMAIL = "sara@example.com";
     static final String PASSWORD_HASH = "hash";
 
     private LoginAttemptTestMother() {

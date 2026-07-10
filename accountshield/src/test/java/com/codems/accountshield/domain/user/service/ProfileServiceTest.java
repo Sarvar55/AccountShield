@@ -40,6 +40,7 @@ class ProfileServiceTest {
         UserResponse result = profileService.updateProfile(ProfileTestMother.EMAIL, ProfileTestMother.updateRequest());
 
         assertThat(result.name()).isEqualTo(ProfileTestMother.NEW_NAME);
+        assertThat(result.bio()).isEqualTo(ProfileTestMother.NEW_BIO);
         assertThat(user.getName()).isEqualTo(ProfileTestMother.NEW_NAME);
         assertThat(user.getBio()).isEqualTo(ProfileTestMother.NEW_BIO);
     }

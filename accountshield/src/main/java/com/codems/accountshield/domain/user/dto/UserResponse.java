@@ -8,6 +8,7 @@ import com.codems.accountshield.domain.user.entity.Role;
 public record UserResponse(
         UUID id,
         String name,
+        String bio,
         String email,
         Role role,
         boolean emailVerified,
