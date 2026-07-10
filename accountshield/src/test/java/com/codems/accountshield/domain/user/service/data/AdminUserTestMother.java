@@ -42,7 +42,7 @@ public final class AdminUserTestMother {
     }
 
     public  static AdminUserStatusRequest unlockedStatusRequest() {
-        return new AdminUserStatusRequest(false);
+        return new AdminUserStatusRequest(false,false);
     }
 
     public static UserResponse adminResponse(UUID id) {

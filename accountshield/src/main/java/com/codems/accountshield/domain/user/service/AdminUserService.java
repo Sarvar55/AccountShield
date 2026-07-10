@@ -34,6 +34,7 @@ public class AdminUserService {
     public UserResponse updateStatus(UUID id, AdminUserStatusRequest request) {
         User user = findUser(id);
         user.setAccountLocked(request.accountLocked());
+        user.setEmailVerified(request.emailVerified());
         if (!request.accountLocked()) {
             user.setLockedUntil(null);
             user.setFailedLoginAttempts(0);
